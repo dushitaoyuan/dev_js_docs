@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>send message</title>
+</head>
+<body>
+消息:<input placeholder="输入消息" width="200px" id="message">
+<input type="button" value="发送" onclick="sendMsg()">
+
+
+同一页面index2收到消息:
+<div id="showMessage" style="color: green"></div>
+</body>
+<script src="static/event-listener.js"></script>
+<script src="static/layui/layui.all.js"></script>
+
+<script type="text/javascript">
+    var $ = layui.$
+    EventListener.addEventListener('showMessage', function (message) {
+        $("#showMessage").append(message + "\n");
+    })
+    function sendMsg() {
+        EventListener.sendEvent('showMessage', $("#message").val())
+    }
+
+
+</script>
+</html>
