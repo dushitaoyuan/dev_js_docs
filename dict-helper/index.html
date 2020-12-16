@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>字典获取</title>
+</head>
+<br>
+字典类型:
+<select id="dictType" onchange="fetchDictByType()">
+</select>
+字典获取扩展参数:
+<textarea id="extData" rows="5" cols="50">
+</textarea>
+<button onclick="fetchDictByType()">获取字典</button>
+</br>
+字典内容:</br>
+<div id="dictContent" style="color: green"></div>
+</body>
+
+<script src="static/jquery3.4.1.js"></script>
+<script src="static/web-storage-cache.min.js"></script>
+<script src="dict.js"></script>
+<script type="text/javascript">
+    let dictUtil = new DictHelper({dictFetchUrl: 'http://xxx:8080/dict'});
+
+    function initDictType() {
+        $.each(DICT_TYPE, function (prop) {
+            $("#dictType").append('<option value="' + prop + '">' + DICT_TYPE[prop] + '</option>')
+        });
+    }
+
+    function fetchDictByType() {
+        let dictType = $("#dictType").val()
+        let extData = $("#extData").val()
+        let dictValue = dictUtil.getDictList(dictType, null, extData);
+        $("#dictContent").html(JSON.stringify(dictValue));
+    }
+
+    initDictType()
+</script>
+</html>
