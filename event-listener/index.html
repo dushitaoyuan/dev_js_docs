@@ -9,11 +9,11 @@
 index收到消息:
 <div id="showMessage" style="color: green"></div>
 </body>
-<script src="static/event-listener.js"></script>
+<script src="event-listener.js"></script>
 <script src="static/layui/layui.all.js"></script>
 <script type="text/javascript">
     var $ = layui.$
-    EventListener.addEventListener('showMessage', function (message) {
+    eventListener.addEventListener('showMessage', function (message) {
         $("#showMessage").append(message + "\n");
     })
 </script>
